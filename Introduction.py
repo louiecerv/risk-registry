@@ -41,8 +41,7 @@ async def app():
         st.download_button(
             label="Download PDF",
             data=pdf_data,
-            file_type="application/pdf",
-            mime="pdf",
+            mime="application/pdf",
             key="download-pdf-button",
         )
 
