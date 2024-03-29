@@ -24,7 +24,7 @@ async def app():
   
   # Text input for user question
   question = """Follow recommend content of the risk registry exactly.  Create a risk registry for the 
-    Management Information System Office. Format the output as a table. Omit all other output text and return only the table."""
+    Management Information System Office. Format the output as a table. Omit all other output text and return only the table. Convert the table to a Pandas dataframe."""
   
   # Text area input for the context
   context = """Here's the recommended content and structure for your risk register:
