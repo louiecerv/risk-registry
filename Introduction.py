@@ -3,6 +3,7 @@ import openai
 from reportlab.pdfgen import canvas
 
 
+
 from openai import AsyncOpenAI
 from openai import OpenAI
 
@@ -36,14 +37,18 @@ async def app():
         generate_pdf(response)
         with open("report.pdf", "rb") as pdf_file:
           pdf_data = pdf_file.read()
-        download_link = create_download_link(pdf_data, "my_report")
-        st.markdown(download_link, unsafe_allow_html=True)
+
+        st.download_button(
+            label="Download PDF",
+            data=pdf_data,
+            file_type="application/pdf",
+            mime="pdf",
+            key="download-pdf-button",
+        )
+
         st.success("Your PDF is ready to download!")
       else:
         st.error("Please enter both question and context.")
-
-
-
 
 def generate_pdf(text):
   """Generates a PDF document with the provided text content"""
@@ -51,11 +56,6 @@ def generate_pdf(text):
   pdf.setFont("Helvetica", 12)
   pdf.drawString(50, 700, text)
   pdf.save()
-
-def create_download_link(val, filename):
-  """Creates a downloadable link from a byte string"""
-  b64 = base64.b64encode(val).decode("utf-8")
-  return f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}.pdf">Download PDF</a>'
 
 #run the app
 if __name__ == "__main__":
