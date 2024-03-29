@@ -7,7 +7,6 @@ from openai import AsyncOpenAI
 from openai import OpenAI
 
 client = AsyncOpenAI(
-    # This is the default and can be omitted
     api_key=st.secrets["API_key"],
 )
 
@@ -34,13 +33,13 @@ async def app():
           response = await generate_response(question, context)
           st.write("Response:")
           st.write(response)
-            generate_pdf(response)
-            with open("report.pdf", "rb") as pdf_file:
-              pdf_data = pdf_file.read()
-            download_link = create_download_link(pdf_data, "my_report")
-            st.markdown(download_link, unsafe_allow_html=True)
-            st.success("Your PDF is ready to download!")
-      else:
+          generate_pdf(response)
+          with open("report.pdf", "rb") as pdf_file:
+            pdf_data = pdf_file.read()
+          download_link = create_download_link(pdf_data, "my_report")
+          st.markdown(download_link, unsafe_allow_html=True)
+          st.success("Your PDF is ready to download!")
+    else:
           st.error("Please enter both question and context.")
 
 
