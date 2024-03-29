@@ -38,7 +38,8 @@ async def app():
   Risk Detection Method: How the risk will be identified (e.g., process monitoring, customer feedback).
   Risk Owner: The individual or department responsible for managing the risk.
   Control Measures: Specific actions planned to reduce the likelihood or impact of the risk.
-  Monitoring and Review: A plan for tracking the effectiveness of the control measures, including the frequency of review (e.g., monthly, quarterly).
+  Monitoring and Review: A plan for tracking the effectiveness of the control measures, 
+  including the frequency of review (e.g., monthly, quarterly).
   Action Effectiveness: Record the success of implemented controls in mitigating the risk."""
   
   # Button to generate response
