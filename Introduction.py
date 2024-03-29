@@ -23,17 +23,31 @@ async def app():
   st.title("OpenAI Text Generation App")
   
   # Text input for user question
-  question = st.text_input("Enter your question:")
+  question = """Follow recommend content of the risk registry exactly.  Create a risk registry for the 
+    Management Information System Office. Format the output as a table."""
   
   # Text area input for the context
-  context = st.text_area("Enter the context:")
+  context = """Here's the recommended content and structure for your risk register:
+  Content:
+  Risk ID: A unique identifier for each risk (optional but helpful for tracking).
+  Risk Description: A clear and concise statement describing the potential issue that could affect your QMS.
+  Risk Source: The origin or cause of the risk (e.g., process failure, supplier issue, regulatory change).
+  Risk Category: Grouping similar risks together (e.g., operational, financial, compliance).
+  Risk Probability: Likelihood of the risk occurring, rated using a scale (e.g., low, medium, high) or a probability range (e.g., 1-10%).
+  Risk Impact: Severity of the consequences if the risk materializes, rated similar to probability.
+  Risk Detection Method: How the risk will be identified (e.g., process monitoring, customer feedback).
+  Risk Owner: The individual or department responsible for managing the risk.
+  Control Measures: Specific actions planned to reduce the likelihood or impact of the risk.
+  Monitoring and Review: A plan for tracking the effectiveness of the control measures, including the frequency of review (e.g., monthly, quarterly).
+  Action Effectiveness: Record the success of implemented controls in mitigating the risk."""
   
   # Button to generate response
-  if st.button("Generate Response"):
+  if st.button("Generate Risk Registry"):
       if question and context:
         response = await generate_response(question, context)
         st.write("Response:")
         st.write(response)
+
         generate_pdf(response)
         with open("report.pdf", "rb") as pdf_file:
           pdf_data = pdf_file.read()
